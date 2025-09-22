@@ -11,7 +11,7 @@
     <script src="libs/panelset/panelset.js"></script>
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x35dce52f16b4b2b9a6f6cb2ed8ea1c9","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"fe0e4911380643679be8e8355ea90bf5","expires":1}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -26,6 +26,8 @@
     <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-scribble/scribble.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="slides.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -58,6 +60,12 @@ layout: true
 &lt;/div&gt; 
 
 ---
+
+
+
+
+
+
 
 
 
@@ -179,6 +187,981 @@ E HOJE???????
 ]
 
 
+---
+
+# Fundamentos da previsão de demanda
+
+*   **Definição:** Previsão de demanda é o processo de estimar a quantidade futura de produtos ou serviços que os clientes irão adquirir em um período específico, sob determinadas condições.
+*   **Papel na Administração da Produção:** É o ponto de partida para todo o planejamento e controle. Uma previsão precisa é crítica para:
+    *   **Planejamento da Capacidade:** Definir o tamanho da fábrica, compra de máquinas.
+    *   **Gestão de Estoques:** Evitar excessos (custos) ou falta (perda de vendas).
+    *   **Planejamento Mestre da Produção (PMP):** Definir o que e quando produzir.
+    *   **Compras:** Planejar a aquisição de matéria-prima (diretamente ligada à Eng. de Materiais).
+    *   **Orçamentação:** Estimar custos e receitas futuras.
+
+---
+
+# Fundamentos da previsão de demanda
+
+*   **Características das Previsões (Slack):**
+    *   São **sempre imprecisas**. O objetivo é minimizar o erro, não eliminá-lo.
+    *   São **mais precisas para agregados** (ex.: previsão para uma família de produtos) do que para itens individuais.
+    *   São **menos precisas para períodos mais longos** (horizonte de longo prazo).
+
+---
+
+# Fundamentos da previsão de demanda
+
+### a) Produção sob Encomenda (Make-to-Order - MTO)
+
+*   **Como funciona:** O produto só é iniciado após a confirmação do pedido do cliente. Exemplos: navios, máquinas industriais, prédios, ternos sob medida.
+*   **Papel da Previsão de Demanda:** A previsão aqui é **menos sobre "o que" e "quanto" produzir**, e mais sobre **capacidade e lead times**.
+   *   **Previsão de Demanda Agregada:** É usada para prever a carga de trabalho futura na fábrica (ex.: quantas horas de trabalho serão necessárias no próximo trimestre?).
+   *   **Finalidade:** Planejar a capacidade (contratar/demitir funcionários, comprar máquinas), adquirir materiais estratégicos de longo lead time e definir prazos de entrega realistas para os clientes.
+
+---
+
+# Fundamentos da previsão de demanda
+
+### b) Produção para Estoque (Make-to-Stock - MTS)
+*   **Como funciona:** Os produtos são fabricados antecipadamente e mantidos em estoque, prontos para a demanda. Exemplos: eletrodomésticos, bebidas, produtos de consumo.
+*   **Papel da Previsão de Demanda:** **CRITICO**. É o coração do sistema.
+    *   **Previsão de Demanda Detalhada:** É necessária uma previsão precisa por item (SKU) para definir os níveis de estoque-alvo.
+    *   **Finalidade:** Calcular o **Plano Mestre de Produção (MPS)**, que define o que, quanto e quando produzir para repor os estoques, evitando tanto a falta (ruptura) quanto o excesso (estoque obsoleto).
+
+---
+
+# Fundamentos da previsão de demanda
+
+### c) Montagem sob Encomenda (Assemble-to-Order - ATO)
+*   **Como funciona:** Componentes e subconjuntos são produzidos ou comprados antecipadamente, mas a montagem final só ocorre após o pedido. Exemplos: computadores Dell, carros com muitas opções.
+*   **Papel da Previsão de Demanda:**
+    *   **Previsão ao Nível de Componentes:** A previsão não é para o produto final (ex.: "notebook i7, 16GB, 512GB"), mas para os **componentes comuns** (ex.: quantas telas de 15", quantos processadores i7, quantos GB de RAM serão necessários?).
+    *   **Finalidade:** Elaborar o **Plano Mestre de Produção (MPS)** para os componentes e gerenciar seus estoques. A montagem final é acionada pelo pedido real.
+
+---
+
+# Fundamentos da previsão de demanda
+
+### d) Engenharia sob Encomenda (Engineer-to-Order - ETO)
+*   **Como funciona:** O projeto do produto é customizado para cada pedido. A produção só começa após a engenharia. Exemplos: usinas de energia, linhas de produção automatizadas.
+*   **Papel da Previsão de Demanda:** Semelhante ao MTO, mas ainda mais estratégica e de longo prazo.
+    *   **Previsão de Mercado:** Foca em tendências de mercado, projetos de lei, investimentos de grandes clientes.
+    *   **Finalidade:** Planejamento estratégico de capacidade, investimentos em P&amp;D e preparação da cadeia de suprimentos para materiais críticos.
+
+---
+
+# Fundamentos da previsão de demanda
+
+### e) Layout por Posição Fixa
+*   **Como funciona:** O produto principal fica parado e os recursos (mão de obra, equipamentos) se movem até ele. Exemplos: construção civil, estaleiros.
+*   **Relação com a Previsão:** A previsão de demanda é usada para **planejar a alocação de recursos críticos** (equipes especializadas, guindastes) ao longo do tempo para múltiplos projetos.
+
+---
+
+# Fundamentos da previsão de demanda
+
+### f) Layout por Processo (Funcional)
+*   **Como funciona:** Máquinas ou atividades similares são agrupadas em departamentos (ex.: departamento de solda, departamento de pintura). O produto flui entre esses departamentos. Típico de produção sob encomenda (MTO) ou de baixo volume/alta variedade.
+*   **Relação com a Previsão:** A previsão de demanda agregada é vital para **dimensionar a capacidade de cada departamento**. Se a previsão indica aumento de vendas de produtos que exigem mais usinagem, o departamento de usinagem precisa ser expandido.
+
+---
+
+# Fundamentos da previsão de demanda
+
+### g) Layout por Produto (Linha de Montagem)
+*   **Como funciona:** Máquinas e equipamentos são dispostos na sequência exata das operações necessárias para fabricar um produto. Típico de produção em massa para estoque (MTS).
+*   **Relação com a Previsão:** **DIRETA E CRUCIAL**. O **ritmo da linha (takt time)** é calculado com base na previsão de demanda.
+    *   **Exemplo:** Se a previsão é de vender 480 unidades por dia em um turno de 8 horas (480 minutos), o *takt time* é de 1 minuto. A linha deve produzir uma unidade a cada minuto para atender à demanda. Qualquer alteração significativa na previsão pode exigir um rebalanceamento da linha.
+
+---
+
+# Fundamentos da previsão de demanda
+
+### h) Layout Celular (Manufacturing Cells)
+*   **Como funciona:** Células são criadas para produzir famílias de produtos com processos similares. Combina vantagens do layout por processo e por produto.
+*   **Relação com a Previsão:** A previsão de demanda é usada para:
+    1.  **Definir as famílias de produtos** que formarão cada célula.
+    2.  **Dimensionar a capacidade de cada célula** com base na demanda prevista para sua família de produtos.
+
+---
+
+# Fundamentos da previsão de demanda
+
+.small[
+
+| Modelo/Layout | Principal Uso da Previsão de Demanda | Horizonte Típico da Previsão |
+| :--- | :--- | :--- |
+| **Produção para Estoque (MTS)** | Definir o plano mestre de produção e níveis de estoque | Curto e médio prazo (semanas, meses) |
+| **Montagem sob Encomenda (ATO)** | Planejar estoques de componentes comuns | Médio prazo (meses) |
+| **Produção sob Encomenda (MTO)** | Planejamento de capacidade e lead times | Médio e longo prazo (trimestres, anos) |
+| **Engenharia sob Encomenda (ETO)** | Planejamento estratégico e de capacidade | Longuíssimo prazo (anos) |
+| **Layout por Produto (Linha)** | Definir o ritmo de produção (*takt time*) | Curto e médio prazo |
+| **Layout por Processo** | Dimensionar a capacidade de cada departamento | Médio prazo |
+]
+
+**Conclusão:** A previsão de demanda não é um elemento opcional; é um **pré-requisito** para um planejamento de produção eficaz, independentemente do modelo ou layout escolhido. A precisão da previsão impacta diretamente a eficiência, os custos e o nível de serviço ao cliente da empresa.
+
+
+---
+
+# Fundamentos da previsão de demanda
+
+### **Horizonte de Tempo:**
+
+*   **Longo Prazo (&gt; 2 anos):** Para planejamento estratégico (nova fábrica, novos produtos). Técnicas qualitativas são comuns.
+*   **Médio Prazo (3 meses a 2 anos):** Para Planejamento Agregado da Produção (PAP). Técnicas quantitativas (séries temporais) são predominantes.
+*   **Curto Prazo (diário a 3 meses):** Para programação detalhada da produção e controle de estoques. Técnicas quantitativas de alta frequência.
+
+---
+
+# Fundamentos da previsão de demanda
+
+### **Padrões de Demanda (Rodrigues):**
+
+**Tendência:** Crescimento ou declínio sustentado ao longo do tempo.   
+**Sazonalidade:** Variações regulares e previsíveis que se repetem em períodos fixos (ex.: verão, Natal).   
+**Ciclicidade:** Variações relacionadas a ciclos econômicos (mais longos e irregulares).   
+**Variação Aleatória:** Flutuações imprevisíveis ("ruído").
+
+---
+
+# Fundamentos da previsão de demanda
+
+### **Técnicas de Previsão**
+
+*   **A. Técnicas Qualitativas:** Baseadas em julgamento e opinião. Usadas quando há poucos dados históricos (lançamento de produtos) ou em contextos muito incertos.
+    *   **Opinião de Especialistas:** Consulta a vendedores, gerentes, engenheiros.
+    *   **Pesquisa de Mercado:** Entrevistas com clientes potenciais.
+    *   **Método Delphi:** Rodadas anônimas de questionários com especialistas para chegar a um consenso.
+
+
+---
+
+# Fundamentos da previsão de demanda
+
+#  **Técnicas de Previsão**
+
+*   **B. Técnicas Quantitativas:** Baseadas em dados históricos e modelos matemáticos.
+    *   **Séries Temporais:** Assume que o padrão passado se repetirá no futuro.
+        *   **Média Móvel Simples:** Média das demandas dos últimos `n` períodos. Simples, mas ignora tendências e sazonalidade.
+        *   **Média Móvel Ponderada:** Atribui pesos diferentes aos períodos (pesos maiores para dados mais recentes).
+---
+
+# Fundamentos da previsão de demanda
+
+###  **Técnicas de Previsão**
+
+*   **B. Técnicas Quantitativas:** Baseadas em dados históricos e modelos matemáticos.
+    *   **Séries Temporais:** Assume que o padrão passado se repetirá no futuro.
+        *   **Suavização Exponencial:** Similar à média móvel ponderada, mas os pesos decaem exponencialmente. Mais eficiente computacionalmente. A fórmula básica é: `Previsão_nova = α * Demanda_real_anterior + (1 - α) * Previsão_anterior`, onde `α` é a constante de suavização (0 &lt; α &lt; 1).
+        *   **Decomposição de Série Temporal:** Separa a demanda em seus componentes (tendência, sazonalidade, ciclo e aleatoriedade) para modelagem individual.
+    *   **Modelos Causais (Regressão):** Assume uma relação de causa e efeito entre a demanda e uma ou mais variáveis independentes (ex.: preço do produto, índice de desemprego, PIB). Mais complexo, mas potencialmente mais preciso para o longo prazo.
+
+---
+
+# Fundamentos da previsão de demanda
+
+### **Medição de Erros da Previsão**
+
+*   É fundamental medir a acurácia da previsão para validar e melhorar o modelo.
+*   **Erro da Previsão:** `Erro = Demanda Real - Previsão`
+*   **Medidas Comuns:**
+    *   **MAE (Mean Absolute Error - Erro Médio Absoluto):** Média dos valores absolutos dos erros. Fácil de interpretar.
+    *   **MSE (Mean Squared Error - Erro Quadrático Médio):** Média dos quadrados dos erros. Penaliza erros grandes.
+    *   **MAPE (Mean Absolute Percentage Error - Erro Percentual Absoluto Médio):** Expressa o erro em porcentagem. Muito útil para comparação entre diferentes produtos.
+
+---
+
+# Detalhamento das Técnicas
+
+### **Dados Históricos de Demanda**
+
+.small[
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;caption&gt;Série Temporal da Demanda Real (Unidades/Mês)&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Mes &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Demanda_Real &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 135 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 118 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 130 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 155 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 145 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 160 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 138 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 165 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 150 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 170 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+]
+
+---
+
+# Detalhamento das Técnicas
+
+### **Dados Históricos de Demanda**
+
+&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
+
+# Detalhamento das Técnicas
+
+### **Média Móvel Simples (MMS)**
+
+**Conceito:** A previsão para o próximo período é a média aritmética das demandas reais dos `n` períodos mais recentes.
+
+**Fórmula:**
+`Previsão (período t+1) = Σ (Demanda Real dos últimos n períodos) / n`
+
+---
+
+# Detalhamento das Técnicas
+
+### **Média Móvel Simples (MMS)**
+
+**Exemplo Prático:** Vamos calcular usando **n=3** (média móvel de 3 meses).
+
+.small[
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;caption&gt;Cálculo da Média Móvel Simples - Fórmula: Previsão(t+1) = Σ(Demanda últimos n períodos) / n&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Mes &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Demanda_Real &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Calculo_MMS &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Previsao_MMS &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 118 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (120+135+118)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 124.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 130 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (135+118+142)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 131.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 155 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (118+142+130)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 130.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 145 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (142+130+155)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (130+155+145)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 143.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 138 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (155+145+160)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 153.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (145+160+138)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 144.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 150 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (160+138+165)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 154.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 170 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (138+165+150)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 151.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; (165+150+170)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 161.7 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+]
+
+---
+
+# Detalhamento das Técnicas
+
+### **Média Móvel Simples (MMS)**
+
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Detalhamento das Técnicas
+
+### **Média Móvel Ponderada (MMP)**
+
+**Conceito:** Atribui pesos diferentes a cada período, dando mais importância aos dados mais recentes.
+
+**Fórmula:**
+`Previsão (t+1) = (Peso₁ * Realₜ) + (Peso₂ * Realₜ₋₁) + ... + (Pesoₙ * Realₜ₋ₙ₊₁)`
+*Onde a soma dos pesos deve ser igual a 1.*
+
+---
+
+# Detalhamento das Técnicas
+
+### **Média Móvel Ponderada (MMP)**
+
+**Exemplo Prático:** Cálculo da Média Móvel Ponderada - Pesos: 0.5 (mês t-1), 0.3 (mês t-2), 0.2 (mês t-3)
+
+.small[
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;caption&gt;Cálculo da Média Móvel Ponderada - Pesos: 0.5 (mês t-1), 0.3 (mês t-2), 0.2 (mês t-3)&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Mes &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Demanda_Real &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Calculo_MMP &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Previsao_MMP &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 118 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (118×0.5)+(135×0.3)+(120×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 126.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 130 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (142×0.5)+(118×0.3)+(135×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 133.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 155 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (130×0.5)+(142×0.3)+(118×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 132.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 145 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (155×0.5)+(130×0.3)+(142×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 146.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (145×0.5)+(155×0.3)+(130×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 147.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 138 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (160×0.5)+(145×0.3)+(155×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 152.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (138×0.5)+(160×0.3)+(145×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 146.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 150 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (165×0.5)+(138×0.3)+(160×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 155.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 170 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (150×0.5)+(165×0.3)+(138×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 152.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; (170×0.5)+(150×0.3)+(165×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 163.0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+]
+
+---
+
+# Detalhamento das Técnicas
+
+### **Média Móvel Ponderada (MMP)**
+
+
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Detalhamento das Técnicas
+
+### **Suavização Exponencial Simples (SES)**
+
+**Conceito:** Atualiza a previsão anterior considerando uma parcela do erro cometido. É elegante e eficiente, necessitando apenas de três dados: a previsão anterior, a demanda real e a constante de suavização (α).
+
+**Fórmula:**
+`Previsão Nova (Fₜ₊₁) = α * Demanda Real Atual (Aₜ) + (1 - α) * Previsão Anterior (Fₜ)`
+*   `α` (Alfa) é a constante de suavização, variando entre 0 e 1.
+*   Um **α alto (ex.: 0.7)** significa que a previsão reage rapidamente a mudanças reais.
+*   Um **α baixo (ex.: 0.1)** significa que a previsão é mais estável e suaviza o "ruído".
+
+---
+
+# Detalhamento das Técnicas
+
+### **Suavização Exponencial Simples (SES)**
+
+**Exemplo Prático:** Vamos usar **α = 0.3**. Precisamos de uma previsão inicial (F₁). Vamos assumir **F₁ = 120** (igual à demanda do mês 1).
+
+.small[
+
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;caption&gt;Cálculo da Suavização Exponencial - Fórmula: Fₜ₊₁ = α × Aₜ + (1-α) × Fₜ&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Mes &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Demanda_Real &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Previsao_Anterior &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Calculo_SES &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Previsao_SES &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; F₁ = 120.0 (inicial) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×120 + 0.7×120.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 118 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 124.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×135 + 0.7×120.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 124.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 122.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×118 + 0.7×124.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 122.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 130 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 128.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×142 + 0.7×122.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 128.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 155 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 128.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×130 + 0.7×128.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 128.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 145 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 136.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×155 + 0.7×128.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 136.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 139.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×145 + 0.7×136.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 139.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 138 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 145.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×160 + 0.7×139.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 145.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 143.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×138 + 0.7×145.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 143.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 150 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 149.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×165 + 0.7×143.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 149.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 170 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 149.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3×150 + 0.7×149.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 149.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 155.9 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 0.3×170 + 0.7×149.9 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 155.9 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+]
+
+---
+
+# Detalhamento das Técnicas
+
+### **Suavização Exponencial Simples (SES)**
+
+
+&lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Detalhamento das Técnicas
+
+### **Cálculo do Erro de Previsão (MAPE)**
+
+**Conceito:** O MAPE (Mean Absolute Percentage Error) mede a precisão da previsão em porcentagem, facilitando a comparação entre diferentes produtos ou técnicas.
+
+**Fórmula do MAPE:**
+`MAPE = (1/n) * Σ |(Demanda Real - Previsão) / Demanda Real| * 100%`
+
+---
+
+# Detalhamento das Técnicas
+
+### **Cálculo do Erro de Previsão (MAPE)**
+
+**Exemplo Prático:** Vamos calcular o MAPE para a **Suavização Exponencial (α=0.3)** a partir do Mês 2.
+
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;caption&gt;Cálculo do MAPE (Mean Absolute Percentage Error)&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Mes &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Demanda_Real &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Previsao_SES &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Erro &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Erro_Absoluto &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Erro_Percentual_Absoluto &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 120.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 15.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 15.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 118 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 124.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -6.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 122.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 130 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 128.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 155 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 128.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 26.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 26.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 145 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 136.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 139.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 138 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 145.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -7.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 143.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 21.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 21.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 150 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 149.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 170 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 149.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20.1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11.8 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
+&lt;tr&gt;
+&lt;td style = 'padding: 0; border:0;' colspan='100%'&gt;&lt;sup&gt;a&lt;/sup&gt; MAPE Total = (97.35% / 11) ≈  8.85 %&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style = 'padding: 0; border:0;' colspan='100%'&gt;&lt;sup&gt;b&lt;/sup&gt; Fórmula: MAPE = (1/n) × Σ |(Real - Previsão)/Real| × 100%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style = 'padding: 0; border:0;' colspan='100%'&gt;&lt;sup&gt;c&lt;/sup&gt; Em média, a previsão usando SES com α=0.3 teve um erro de aproximadamente **8.85%** em relação à demanda real. Esse valor seria comparado com o MAPE de outras técnicas (como MMS ou MMP) para decidir qual modelo é mais preciso para este conjunto de dados específico.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tfoot&gt;
+&lt;/table&gt;&lt;/div&gt;
+
+---
+
+# Detalhamento das Técnicas
+
+### **Comparação de Todas as Técnicas**   
+
+
+
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
+
+# Detalhamento das Técnicas
+
+### **Comparação de Todas as Técnicas**   
+
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;caption&gt;Comparação da qualidade dos métodos&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Método &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Previsão_Mês_13 &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; MAPE &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Complexidade &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Reação_a_Mudanças &lt;/th&gt;
+   &lt;th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;"&gt; Melhor_Uso &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Média Móvel Simples (n=3) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 161.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Baixa &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Lenta &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Demandas estáveis &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Média Móvel Ponderada (0.5,0.3,0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 163.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Média &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Moderada &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Demandas com tendência &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Suavização Exponencial (α=0.3) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 155.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Baixa &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Lenta (α=0.3) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Suavização de ruído &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+
+
+---
+
+# Detalhamento das Técnicas
+
+### **Comparação de Todas as Técnicas**   
+
+
+``` r
+resumo_executivo &lt;- data.frame(
+  Métrica = c("Melhor Método (Menor MAPE)", 
+              "Previsão Consensual Mês 13",
+              "MAPE Médio dos Métodos",
+              "Amplitude das Previsões (Mês 13)",
+              "Recomendação para Produção"),
+  Valor = c(
+    resultados_comparativos$Método[which.min(resultados_comparativos$MAPE)],
+    paste(round(mean(resultados_comparativos$Previsão_Mês_13), 1), "unidades"),
+    paste(round(mean(resultados_comparativos$MAPE), 2), "%"),
+    paste("155.9 - 163.0 unidades (variação de 7.1 unidades)"),
+    "Utilizar MMP para maior sensibilidade a tendências recentes"
+  )
+)
+
+resumo_executivo %&gt;%
+  kable(format = "html", escape = FALSE, align = "l", 
+        caption = "Resumo Executivo da Análise de Previsão") %&gt;%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE,
+    position = "center"
+  ) %&gt;%
+  row_spec(0, bold = TRUE, background = "#2c3e50", color = "white") %&gt;%
+  column_spec(2, bold = TRUE, color = "#2980b9")
+```
+
+```
+## Warning in gzfile(file, mode): não foi possível abrir o arquivo
+## comprimido
+## 'C:/Users/renat/AppData/Local/Temp/RtmpI7hlnr\fileb5683d37415',
+## motivo provável 'No such file or directory'
+```
+
+&lt;table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Resumo Executivo da Análise de Previsão&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;"&gt; Métrica &lt;/th&gt;
+   &lt;th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;"&gt; Valor &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Melhor Método (Menor MAPE) &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: rgba(41, 128, 185, 255) !important;"&gt; Suavização Exponencial (α=0.3) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Previsão Consensual Mês 13 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: rgba(41, 128, 185, 255) !important;"&gt; 160.2 unidades &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; MAPE Médio dos Métodos &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: rgba(41, 128, 185, 255) !important;"&gt; 8.67 % &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Amplitude das Previsões (Mês 13) &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: rgba(41, 128, 185, 255) !important;"&gt; 155.9 - 163.0 unidades (variação de 7.1 unidades) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Recomendação para Produção &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: rgba(41, 128, 185, 255) !important;"&gt; Utilizar MMP para maior sensibilidade a tendências recentes &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+
+
+*   Aplicações Práticas para Engenharias
+*   Atividade em Grupo
+
+**Slide 3: O que é Previsão de Demanda?**
+*   Definição: "Estimativa da demanda futura..."
+*   **Analogia:** A bússola do planejamento da produção.
+*   **Importância:** Impacta diretamente Custos, Serviço ao Cliente e Eficiência.
+
+**Slide 4: Por que é Crucial para a Engenharia?**
+*   **Eng. Mecânica:** Dimensionamento de máquinas, programação da produção, lead times de fabricação.
+*   **Eng. de Materiais:** Planejamento de compras, gestão de estoques de matéria-prima, evitar obsolescência.
+*   **Imagem:** Diagrama mostrando a previsão conectada ao PMP, Compras e Controle de Estoques.
+
+**Slide 5: Conceitos-Chave - Horizonte de Tempo**
+*   Gráfico com três faixas:
+    *   **Curto Prazo:** Programação da produção.
+    *   **Médio Prazo:** Planejamento Agregado (PAP).
+    *   **Longo Prazo:** Planejamento Estratégico (capacidade).
+
+**Slide 6: Conceitos-Chave - Padrões da Demanda**
+*   Gráficos exemplificando:
+    *   Tendência (linha crescente)
+    *   Sazonalidade (ondas regulares sobre a tendência)
+    *   Variação Aleatória ("ruído" no gráfico)
+
+**Slide 7: Técnicas Qualitativas**
+*   Bullet points: Opinião de Especialistas, Pesquisa de Mercado, Método Delphi.
+*   **Quando usar?** Dados históricos escassos, novos produtos, incerteza alta.
+
+**Slide 8: Técnicas Quantitativas - Séries Temporais**
+*   Premissa: O passado se repete.
+*   **Média Móvel Simples:** Fórmula e exemplo numérico simples.
+*   **Média Móvel Ponderada:** Fórmula, destacando os pesos.
+
+**Slide 9: Técnicas Quantitativas - Suavização Exponencial**
+*   Fórmula central: `F_t+1 = α * A_t + (1 - α) * F_t`
+*   Explicação do papel de `α` (Alfa):
+    *   α alto (ex.: 0.9): Reage rapidamente a mudanças.
+    *   α baixo (ex.: 0.1): Previsão mais estável, suaviza o "ruído".
+*   Exemplo numérico rápido.
+
+**Slide 10: Como Saber se a Previsão é Boa? Medindo o Erro!**
+*   **Erro = Real - Previsão**
+*   **MAE:** Média dos |Erros|. (Fácil)
+*   **MAPE:** Média dos |Erros| em % do Real. (Excelente para comparação)
+*   Tabela simples mostrando cálculo semanal com MAE e MAPE.
+
+**Slide 11: Conclusão e Próximos Passos**
+*   A previsão é uma ferramenta gerencial essencial.
+*   Nenhuma técnica é perfeita; a escolha depende do contexto.
+*   Monitorar o erro é fundamental para a melhoria contínua.
+*   **Próximo: Atividade Prática!**
+
+---
+
+### **Atividade em Grupo: O Desafio do Planejador de Produção**
+
+**Título:** Previsão de Demanda para uma Peça Automotiva
+
+
+---
+
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -188,6 +1171,12 @@ class: center, middle
 .huge[
 **DÚVIDAS?**
 ]
+
+
+---
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
