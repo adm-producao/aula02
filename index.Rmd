@@ -1006,7 +1006,7 @@ resumo_executivo %>%
 
 # **Atividade de aprendizagem**
 
-**Título:** Previsão de Demanda para uma Peça Automotiva
+**Título:** Previsão de Demanda
 
 [LINK](https://www.places.education/disciplinas/adm_prod_mat/aa02/)
 
