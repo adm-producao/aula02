@@ -798,7 +798,7 @@ grafico_ses <- ggplot(dados_ses_grafico, aes(x = Mes)) +
   ) +
   labs(
     title = "Suavização Exponencial (α=0.3) vs. Demanda Real",
-    subtitle = "A linha de previsão da SES é ainda mais suave que a das médias móveis. Com α=0.3, /n a reação às mudanças na demanda real é lenta e gradual. Isso é bom para filtrar variações aleatórias, /n mas pode ser ruim para capturar tendências reais rapidamente",
+    subtitle = "A linha de previsão da SES é ainda mais suave que a das médias móveis.  \n  Com α=0.3, a reação às mudanças na demanda real é lenta e gradual. Isso é bom para filtrar variações aleatórias,  \n mas pode ser ruim para capturar tendências reais rapidamente",
     x = "Mês",
     y = "Demanda (Unidades)"
   ) +
@@ -835,6 +835,7 @@ print(grafico_ses)
 
 **Exemplo Prático:** Vamos calcular o MAPE para a **Suavização Exponencial (α=0.3)** a partir do Mês 2.
 
+.small[
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 mape_calculo <- data.frame(
   Mes = 2:12,
@@ -861,6 +862,7 @@ formatar_tabela_numerica(
     "Em média, a previsão usando SES com α=0.3 teve um erro de aproximadamente **8.85%** em relação à demanda real. Esse valor seria comparado com o MAPE de outras técnicas (como MMS ou MMP) para decidir qual modelo é mais preciso para este conjunto de dados específico."
   ), notation = "alphabet")
 ```
+]
 
 ---
 
@@ -923,14 +925,19 @@ print(grafico_comparativo)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 demanda <- demanda_real$Demanda_Real
 
-resultados_comparativos <- data.frame(Método = c("Média Móvel Simples (n=3)", 
-                                                 "Média Móvel Ponderada (0.5,0.3,0.2)", 
-                                                 "Suavização Exponencial (α=0.3)"),
-                                      Previsão_Mês_13 = c(161.7, 163.0, 155.9),
-                                      MAPE = c(calcular_mape(demanda, calcular_mms(demanda)), calcular_mape(demanda, calcular_mmp(demanda)), calcular_mape(demanda, calcular_ses(demanda))),
-                                      Complexidade = c("Baixa", "Média", "Baixa"),
-                                      Reação_a_Mudanças = c("Lenta", "Moderada", "Lenta (α=0.3)"),
-                                      Melhor_Uso = c("Demandas estáveis", "Demandas com tendência", "Suavização de ruído")
+resultados_comparativos <- data.frame(
+  Método = c("Média Móvel Simples (n=3)", 
+             "Média Móvel Ponderada (0.5,0.3,0.2)", 
+             "Suavização Exponencial (α=0.3)"),
+  Previsão_Mês_13 = c(161.7, 163.0, 155.9),
+  MAPE = c(
+    calcular_mape(demanda, calcular_mms(demanda)),
+    calcular_mape(demanda, calcular_mmp(demanda)),
+    calcular_mape(demanda, calcular_ses(demanda))
+  ),
+  Complexidade = c("Baixa", "Média", "Baixa"),
+  Reação_a_Mudanças = c("Lenta", "Moderada", "Lenta (α=0.3)"),
+  Melhor_Uso = c("Demandas estáveis", "Demandas com tendência", "Suavização de ruído")
 )
 
 linha_menor_mape <- which.min(resultados_comparativos$MAPE)
@@ -944,8 +951,8 @@ resultados_comparativos <- resultados_comparativos %>%
 formatar_tabela_numerica(
   resultados_comparativos,
   titulo = "Comparação entre as técnicas",
-  casas_decimais = 1) %>%
-  row_spec(13, bold = TRUE, background = "#fff2cc")
+  casas_decimais = 1) #%>%
+  #row_spec(13, bold = TRUE, background = "#fff2cc")
 
 
 ```
@@ -980,9 +987,9 @@ resumo_executivo %>%
     bootstrap_options = c("striped", "hover"),
     full_width = FALSE,
     position = "center"
-  ) %>%
-  row_spec(0, bold = TRUE, background = "#2c3e50", color = "white") %>%
-  column_spec(2, bold = TRUE, color = "#2980b9")
+  ) #%>%
+  #row_spec(0, bold = TRUE, background = "#2c3e50", color = "white") %>%
+  #column_spec(2, bold = TRUE, color = "#2980b9")
 ```
 
 ---
@@ -1001,7 +1008,7 @@ resumo_executivo %>%
 
 **Título:** Previsão de Demanda para uma Peça Automotiva
 
-
+[LINK](https://www.places.education/disciplinas/adm_prod_mat/aa02/)
 
 
 ---
