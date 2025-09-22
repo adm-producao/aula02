@@ -1,6 +1,6 @@
 ---
 title: "Administração da Produção"
-subtitle: "Resgate de fundamentos, métodos e modelos"
+subtitle: "Unidade 02: Previsão e informação de vendas"
 author: 
   - <br></br>Renata Oliveira
 output:
@@ -56,7 +56,6 @@ xaringanExtra::use_extra_styles(
 ```{r xaringan-scribble, echo=FALSE}
 xaringanExtra::use_scribble()
 ```
-
 
 
 # Evolução histórica
@@ -167,50 +166,10 @@ E HOJE???????
 - **Como levar** produtos ou serviços para o consumidor?
 ]
 
----
-
-# Níveis de planejamento
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, out.width="100%"}
-knitr::include_graphics("img/11.png")
-```
-
----
-
-# Níveis de planejamento
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, out.width="90%"}
-knitr::include_graphics("img/15.png")
-```
-
----
-
-# Planejamento, programação e controle da produção
-
-- Planejar as necessidades futuras de capacidade produtiva
-- Programar atividades de produção 
-- Planejar níveis adequados de estoques
-- Planejar os materiais a serem comprados
-- Planejar o acesso aos bens e serviços
-- Acompanhar a situação de recursos e ordens
-- Ser capaz de reagir de maneira eficaz
-- Arranjos de prazos entre consumidor e empresas
-- Carregamento de máquinas e postos de trabalho
-- Sequenciamento e priorização da produção
-- Monitoramento da produção.
 
 
----
 
-# Agora é com vcs! 
 
-.larger[
-Em grupos, segundo o tema sorteado: 
-
-1. elaborem e descrevam três decisões que são tomadas nesse contexto nos horizontes estratégico, tático e operacional;
-
-2. elaborem indicadores de suporte a cada uma das decisões e expliquem o que é mensurado por esses indicadores.
-]
 ---
 class: center, middle
 
