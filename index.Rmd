@@ -969,14 +969,12 @@ resumo_executivo <- data.frame(
   Métrica = c("Melhor Método (Menor MAPE)", 
               "Previsão Consensual Mês 13",
               "MAPE Médio dos Métodos",
-              "Amplitude das Previsões (Mês 13)",
-              "Recomendação para Produção"),
+              "Amplitude das Previsões (Mês 13)"),
   Valor = c(
     resultados_comparativos$Método[which.min(resultados_comparativos$MAPE)],
     paste(round(mean(resultados_comparativos$Previsão_Mês_13), 1), "unidades"),
     paste(round(mean(resultados_comparativos$MAPE), 2), "%"),
-    paste("155.9 - 163.0 unidades (variação de 7.1 unidades)"),
-    "Utilizar MMP para maior sensibilidade a tendências recentes"
+    paste("155.9 - 163.0 unidades (variação de 7.1 unidades)")
   )
 )
 
