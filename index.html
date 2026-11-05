@@ -11,7 +11,7 @@
     <script src="libs/panelset/panelset.js"></script>
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"ff00a26a67c34c02b5f31b1861f00b97","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x0c070e3714c46ae99f9ca842793f979","expires":1}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -30,6 +30,7 @@
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="slides.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="ufcimg-slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -162,7 +163,7 @@ Henry Ford **(1910)** cria a produção em série, revolucionando os métodos e 
 ---
 
 # Evolução histórica
-&lt;img src="img/13.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/13.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse
@@ -378,7 +379,7 @@ E HOJE???????
 ### **Dados Históricos de Demanda**
 
 .small[
-&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='color: black; margin-left: auto; margin-right: auto; color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
 &lt;caption&gt;Série Temporal da Demanda Real (Unidades/Mês)&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -445,7 +446,7 @@ E HOJE???????
 
 ### **Dados Históricos de Demanda**
 
-&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ---
 
 # Detalhamento das Técnicas
@@ -466,7 +467,7 @@ E HOJE???????
 **Exemplo Prático:** Vamos calcular usando **n=3** (média móvel de 3 meses).
 
 .small[
-&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='color: black; margin-left: auto; margin-right: auto; color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
 &lt;caption&gt;Cálculo da Média Móvel Simples - Fórmula: Previsão(t+1) = Σ(Demanda últimos n períodos) / n&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -550,10 +551,10 @@ E HOJE???????
    &lt;td style="text-align:center;"&gt; 151.0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; (165+150+170)/3 &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 161.7 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; (165+150+170)/3 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; 161.7 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;
@@ -565,7 +566,7 @@ E HOJE???????
 
 ### **Média Móvel Simples (MMS)**
 
-&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -589,7 +590,7 @@ E HOJE???????
 **Exemplo Prático:** Cálculo da Média Móvel Ponderada - Pesos: 0.5 (mês t-1), 0.3 (mês t-2), 0.2 (mês t-3)
 
 .small[
-&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='color: black; margin-left: auto; margin-right: auto; color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
 &lt;caption&gt;Cálculo da Média Móvel Ponderada - Pesos: 0.5 (mês t-1), 0.3 (mês t-2), 0.2 (mês t-3)&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -673,10 +674,10 @@ E HOJE???????
    &lt;td style="text-align:center;"&gt; 152.1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; (170×0.5)+(150×0.3)+(165×0.2) &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 163.0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; (170×0.5)+(150×0.3)+(165×0.2) &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; 163.0 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;
@@ -689,7 +690,7 @@ E HOJE???????
 ### **Média Móvel Ponderada (MMP)**
 
 
-&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -715,7 +716,7 @@ E HOJE???????
 
 .small[
 
-&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='color: black; margin-left: auto; margin-right: auto; color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
 &lt;caption&gt;Cálculo da Suavização Exponencial - Fórmula: Fₜ₊₁ = α × Aₜ + (1-α) × Fₜ&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -812,11 +813,11 @@ E HOJE???????
    &lt;td style="text-align:center;"&gt; 149.9 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 155.9 &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 0.3×170 + 0.7×149.9 &lt;/td&gt;
-   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 255) !important;"&gt; 155.9 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; 155.9 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; 0.3×170 + 0.7×149.9 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;background-color: rgba(255, 242, 204, 1) !important;"&gt; 155.9 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;
@@ -829,7 +830,7 @@ E HOJE???????
 ### **Suavização Exponencial Simples (SES)**
 
 
-&lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -851,7 +852,7 @@ E HOJE???????
 **Exemplo Prático:** Vamos calcular o MAPE para a **Suavização Exponencial (α=0.3)** a partir do Mês 2.
 
 .small[
-&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='color: black; margin-left: auto; margin-right: auto; color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
 &lt;caption&gt;Cálculo do MAPE (Mean Absolute Percentage Error)&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -975,7 +976,7 @@ E HOJE???????
 
 
 
-&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ---
 
 # Detalhamento das Técnicas
@@ -983,7 +984,7 @@ E HOJE???????
 ### **Comparação de Todas as Técnicas**   
 
 .small[
-&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='color: black; margin-left: auto; margin-right: auto; color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped table-hover table-condensed lightable-paper" style='margin-left: auto; margin-right: auto; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
 &lt;caption&gt;Comparação entre as técnicas&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -1030,7 +1031,7 @@ E HOJE???????
 
 ### **Comparação de Todas as Técnicas**   
 
-&lt;table class="table table-striped table-hover" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
 &lt;caption&gt;Resumo Executivo da Análise de Previsão&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -1097,7 +1098,7 @@ class: center, middle
   "highlightLines": true,
   "highlightStyle": "solarized-light",
   "countIncrementalSlides": false,
-  "slideNumberFormat": "<div class=\"progress-bar-container\">\n  <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n  </div>\n</div>\n"
+  "slideNumberFormat": "<div class=\"progress-bar-container\">\n  <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n  </div>\n</div>"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
